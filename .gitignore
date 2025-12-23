@@ -1,0 +1,5 @@
+model/
+*.pkl
+*.pt
+*.bin
+__pycache__/
