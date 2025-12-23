@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Caption Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1> Image Caption Generator</h1>
+            <p>Upload an image and get AI-generated captions</p>
+        </div>
+
+        <div class="error" id="error"></div>
+        <div class="success" id="success"></div>
+
+        <div class="upload-section">
+            <div class="upload-box" id="uploadBox">
+                <div class="upload-icon">📤</div>
+                <div class="upload-text">Click to upload or drag and drop</div>
+                <div class="upload-hint">Supported: JPG, PNG, GIF, BMP (Max 16MB)</div>
+            </div>
+            <input type="file" id="fileInput" accept="image/*">
+            
+            <div class="button-group">
+                <button class="btn-upload" onclick="selectFile()">Choose Image</button>
+                <button class="btn-clear" onclick="clearAll()">Clear</button>
+            </div>
+        </div>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Analyzing image... Please wait</p>
+        </div>
+
+        <div class="result-section" id="resultSection">
+            <div class="image-preview" id="imagePreview"></div>
+            <div class="caption-box" id="caption"></div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

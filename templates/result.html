@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caption Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1> Caption Result</h1>
+            <p>Your image analysis is ready</p>
+        </div>
+
+        <div class="result-section show" id="resultSection">
+            <div class="image-preview" id="imagePreview">
+                <!-- Ảnh sẽ được insert từ JavaScript -->
+            </div>
+            
+            <div style="margin: 30px 0;">
+                <h2 style="color: #333; margin-bottom: 15px; font-size: 20px;">Generated Caption:</h2>
+                <div class="caption-box" id="caption">
+                    <!-- Caption sẽ được insert từ JavaScript -->
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="btn-upload" onclick="goBack()">← Upload Another</button>
+                <button class="btn-clear" onclick="clearAll()">Clear</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Lấy dữ liệu từ sessionStorage (được set từ trang index)
+        window.addEventListener('DOMContentLoaded', () => {
+            const caption = sessionStorage.getItem('caption');
+            const image = sessionStorage.getItem('image');
+
+            if (caption && image) {
+                document.getElementById('imagePreview').innerHTML = `<img src="${image}" alt="Uploaded image">`;
+                document.getElementById('caption').textContent = caption;
+            } else {
+                // Nếu không có dữ liệu, redirect về trang chính
+                window.location.href = '/';
+            }
+        });
+
+        function goBack() {
+            window.location.href = '/';
+        }
+
+        function clearAll() {
+            sessionStorage.clear();
+            window.location.href = '/';
+        }
+    </script>
+</body>
+</html>
